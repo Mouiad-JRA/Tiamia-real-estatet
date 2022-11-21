@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailadmin_tags wagtailimages_tags i18n%}
+{% load wagtailcore_tags wagtailimages_tags i18n%}
 
 {% block content %}
     {% image self.banner_image fill-900x400 as img %}
@@ -40,17 +40,13 @@
           <div class="col-12">
             <h2 class="font-weight-bold heading text-primary mb-4">{{ self.title }}</h2>
           </div>
+            {% for block in page.content %}
           <div class="col-lg-6">
             <p class="text-black-50">
-            {{ self.sub_title_one  }}
+            {% include_block blcok %}
             </p>
           </div>
-          <div class="col-lg-6">
-            <p class="text-black-50">
-            {{ self.sub_title_two |  }}
-
-            </p>
-          </div>
+            {% endfor %}
         </div>
       </div>
     </div>

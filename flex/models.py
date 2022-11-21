@@ -1,11 +1,13 @@
 from django.db import models
 
 # Create your models here.
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 from django.utils.translation import gettext_lazy as _
 from wagtail.images.edit_handlers import ImageChooserPanel
+
+from streams import blocks
 
 
 class FlexPage(Page):
@@ -15,8 +17,13 @@ class FlexPage(Page):
 
     templates = "home/flex_page.html"
 
-    sub_title_one = RichTextField(_(" Sub title one"))
-    sub_title_two = RichTextField(_(" Sub title two"))
+    content = StreamField(
+        [
+            ("full_richtext", blocks.RichTextBlock()),
+            ("main_title", blocks.TextBlock())
+        ],
+        blank=True, null=True
+    )
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -25,9 +32,9 @@ class FlexPage(Page):
         related_name="+"
     )
     content_panels = Page.content_panels + [
-        FieldPanel('sub_title_one'),
-        FieldPanel('sub_title_two'),
+
         ImageChooserPanel('banner_image'),
+        StreamFieldPanel('content'),
 
     ]
 

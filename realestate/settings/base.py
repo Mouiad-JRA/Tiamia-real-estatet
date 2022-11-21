@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "home",
     "search",
     "flex",
+    "streams",
     "property",
 
 
