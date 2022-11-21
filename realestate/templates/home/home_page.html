@@ -1,3 +1,47 @@
+{% extends "base.html" %}
+
+{% load wagtailadmin_tags wagtailimages_tags i18n%}
+
 {% block content %}
-{{ self.banner_title }}
+{% image self.banner_image fill-900x400 as img %}
+        <div class="hero">
+      <div class="hero-slide">
+        <div
+          class="img overlay"
+          style="background-image: url('{{ img.url }}')"
+        ></div>
+        <div
+          class="img overlay"
+          style="background-image: url('{{ img.url }}')"
+        ></div>
+        <div
+          class="img overlay"
+          style="background-image: url('{{ img.url }}')"
+        ></div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center">
+            <h1 class="heading" data-aos="fade-up">
+
+                {{ self.banner_title }}
+            </h1>
+            <form
+              action="#"
+              class="narrow-w form-search d-flex align-items-stretch mb-3"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <input
+                type="text"
+                class="form-control px-4"
+                placeholder="{{ self.search_placeholder }}"
+              />
+              <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
