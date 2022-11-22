@@ -1,3 +1,7 @@
 /.idea/modules.xml
 /.idea/misc.xml
 /db.sqlite3
+*.pyc
+media
+/.idea/Tiamia-real-estatet.iml
+/.idea/vcs.xml
